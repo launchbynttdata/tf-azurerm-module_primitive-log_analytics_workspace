@@ -16,6 +16,3 @@ resource_names_map = {
     max_length = 80
   }
 }
-identity = {
-  type = "SystemAssigned"
-}

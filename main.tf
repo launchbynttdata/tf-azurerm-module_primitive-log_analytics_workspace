@@ -20,7 +20,7 @@ resource "azurerm_log_analytics_workspace" "log_analytics_workspace" {
   local_authentication_disabled = var.local_authentication_disabled
 
   dynamic "identity" {
-    for_each = var.identity.type != null ? [var.identity] : []
+    for_each = var.identity != null ? [var.identity] : []
     content {
       type         = identity.value.type
       identity_ids = identity.value.identity_ids
