@@ -1,4 +1,4 @@
-module github.com/nexient-llc/tf-azurerm-module_primitive-log_analytics_workspace
+module github.com/launchbynttdata/tf-azurerm-module_primitive-log_analytics_workspace
 
 go 1.21
 
@@ -7,7 +7,7 @@ require (
 	github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.2.2
 	github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/operationalinsights/armoperationalinsights/v2 v2.0.0-beta.3
 	github.com/gruntwork-io/terratest v0.43.12
-	github.com/nexient-llc/lcaf-component-terratest-common v1.0.3
+	github.com/launchbynttdata/lcaf-component-terratest v1.0.3
 	github.com/stretchr/testify v1.8.4
 )
 
