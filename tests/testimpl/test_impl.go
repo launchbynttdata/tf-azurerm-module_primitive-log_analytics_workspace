@@ -3,6 +3,7 @@ package common
 import (
 	"context"
 	"testing"
+	"os"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azcore"
 	"github.com/Azure/azure-sdk-for-go/sdk/azcore/arm"
@@ -10,15 +11,16 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	operationalinsights "github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/operationalinsights/armoperationalinsights/v2"
 	"github.com/gruntwork-io/terratest/modules/terraform"
-	"github.com/launchbynttdata/lcaf-component-terratest/lib/azure/login"
 	"github.com/launchbynttdata/lcaf-component-terratest/types"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestLogAnalyticsWorkspace(t *testing.T, ctx types.TestContext) {
 
-	envVarMap := login.GetEnvironmentVariables()
-	subscriptionID := envVarMap["subscriptionID"]
+	subscriptionID := os.Getenv("ARM_SUBSCRIPTION_ID")
+	if len(subscriptionID) == 0 {
+		t.Fatal("ARM_SUBSCRIPTION_ID is not set in the environment variables ")
+	}
 
 	credential, err := azidentity.NewDefaultAzureCredential(nil)
 	if err != nil {
