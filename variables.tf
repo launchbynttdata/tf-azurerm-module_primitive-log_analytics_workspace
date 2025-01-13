@@ -27,14 +27,18 @@ variable "location" {
 
 variable "sku" {
   type        = string
-  description = "(Optional) Specifies the SKU of the Log Analytics Workspace. Possible values are Free, PerNode, Premium, Standard, Standalone, Unlimited, CapacityReservation, and PerGB2018 (new SKU as of 2018-04-03). Defaults to PerGB2018."
-  default     = "Free"
+  description = "(Optional) Specifies the SKU of the Log Analytics Workspace. Possible values are PerNode, Standalone, Unlimited, CapacityReservation, and PerGB2018. Defaults to PerGB2018. Premium and Standard do not work as per testing."
+  default     = "PerGB2018"
 }
 
 variable "retention_in_days" {
   type        = number
-  description = "(Optional) The workspace data retention in days. Possible values are either 7 (Free Tier only) or range between 30 and 730."
-  default     = "30"
+  description = "(Optional) The workspace data retention in days. Possible values are in the range between 30 and 730."
+  default     = 30
+  validation {
+    condition     = var.retention_in_days >= 30 && var.retention_in_days <= 730
+    error_message = "retention_in_days should be between 30 to 730."
+  }
 }
 
 variable "tags" {
@@ -48,7 +52,11 @@ variable "identity" {
     type         = string
     identity_ids = optional(list(string))
   })
-  description = "(Optional) A identity block as defined below."
+  description = <<EOF
+  (Optional) A identity block as defined below.
+  - type Specifies the identity type of the Log Analytics Workspace. Possible values are SystemAssigned (where Azure will generate a Service Principal for you) and UserAssigned where you can specify the Service Principal IDs in the identity_ids field.
+  - identity_ids Specifies the list of User Assigned Identity IDs to be associated with the Log Analytics Workspace. This field is required when type is UserAssigned.
+  EOF
   default     = null
 }
 

@@ -18,18 +18,19 @@ variable "location" {
     condition     = length(regexall("\\b \\b", var.location)) == 0
     error_message = "Spaces between the words are not allowed."
   }
+  default = "eastus2"
 }
 
 variable "sku" {
   type        = string
-  description = "(Optional) Specifies the SKU of the Log Analytics Workspace. Possible values are Free, PerNode, Premium, Standard, Standalone, Unlimited, CapacityReservation, and PerGB2018 (new SKU as of 2018-04-03). Defaults to PerGB2018."
-  default     = "Free"
+  description = "(Optional) Specifies the SKU of the Log Analytics Workspace. Possible values are PerNode, Standalone, Unlimited, CapacityReservation, and PerGB2018. Defaults to PerGB2018. Premium and Standard do not work as per testing."
+  default     = "PerGB2018"
 }
 
 variable "retention_in_days" {
   type        = number
-  description = "(Optional) The workspace data retention in days. Possible values are either 7 (Free Tier only) or range between 30 and 730."
-  default     = "30"
+  description = "(Optional) The workspace data retention in days. Possible values are in the range between 30 and 730."
+  default     = 30
 }
 
 //variables required by resource names module
@@ -104,7 +105,7 @@ variable "logical_product_service" {
     error_message = "The variable must contain letters, numbers, -, _, and .."
   }
 
-  default = "network"
+  default = "law"
 }
 
 variable "class_env" {
