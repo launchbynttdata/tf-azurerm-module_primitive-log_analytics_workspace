@@ -16,7 +16,7 @@ resource "azurerm_log_analytics_workspace" "log_analytics_workspace" {
   resource_group_name           = var.resource_group_name
   sku                           = var.sku
   retention_in_days             = var.retention_in_days
-  tags                          = local.tags
+  daily_quota_gb                = var.daily_quota_gb
   local_authentication_disabled = var.local_authentication_disabled
 
   dynamic "identity" {
@@ -26,4 +26,5 @@ resource "azurerm_log_analytics_workspace" "log_analytics_workspace" {
       identity_ids = identity.value.identity_ids
     }
   }
+  tags = local.tags
 }
