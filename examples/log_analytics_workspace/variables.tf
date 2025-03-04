@@ -33,6 +33,12 @@ variable "retention_in_days" {
   default     = 30
 }
 
+variable "daily_quota_gb" {
+  type        = number
+  description = "(Optional) The daily quota in GB for ingestion. Defaults to -1 for unlimited."
+  default     = 5
+}
+
 //variables required by resource names module
 variable "resource_names_map" {
   description = "A map of key to resource_name that will be used by tf-launch-module_library-resource_name to generate resource names"

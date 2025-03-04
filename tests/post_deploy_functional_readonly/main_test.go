@@ -32,7 +32,7 @@ func TestLogAnalyticsModule(t *testing.T) {
 		SetTestConfigFolderName(testConfigsExamplesFolderDefault).
 		SetTestConfigFileName(infraTFVarFileNameDefault).
 		SetTestSpecificFlags(map[string]types.TestFlags{
-			"complete": {
+			"log_analytics_workspace": {
 				"IS_TERRAFORM_IDEMPOTENT_APPLY": true,
 			},
 		}).

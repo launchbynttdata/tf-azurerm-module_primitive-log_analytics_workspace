@@ -19,8 +19,8 @@ module "log_analytics_workspace" {
   resource_group_name = module.resource_group.name
   sku                 = var.sku
   retention_in_days   = var.retention_in_days
+  daily_quota_gb      = var.daily_quota_gb
   identity            = var.identity
-
 
   depends_on = [module.resource_group]
 }
