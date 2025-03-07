@@ -41,6 +41,12 @@ variable "retention_in_days" {
   }
 }
 
+variable "daily_quota_gb" {
+  type        = number
+  description = "(Optional) The daily quota in GB for ingestion. Defaults to -1 for unlimited."
+  default     = -1
+}
+
 variable "tags" {
   type        = map(string)
   description = "(Optional) A mapping of tags to assign to the resource."
