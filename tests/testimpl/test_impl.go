@@ -15,7 +15,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestLogAnalyticsWorkspace(t *testing.T, ctx types.TestContext) {
+func TestComposableLogAnalyticsWorkspace(t *testing.T, ctx types.TestContext) {
 
 	subscriptionID := os.Getenv("ARM_SUBSCRIPTION_ID")
 	if len(subscriptionID) == 0 {
