@@ -37,7 +37,7 @@ variable "retention_in_days" {
   default     = 30
   validation {
     condition     = var.retention_in_days >= 30 && var.retention_in_days <= 730
-    error_message = "retention_in_days should be between 30 to 730."
+    error_message = "The retention_in_days value must be between 30 and 730."
   }
 }
 
