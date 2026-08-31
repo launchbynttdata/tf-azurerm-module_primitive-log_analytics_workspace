@@ -44,9 +44,9 @@ func TestComposableLogAnalyticsWorkspace(t *testing.T, ctx types.TestContext) {
 }
 
 func checkLogAnalyticsWorkspaceExistence(t *testing.T, logAnalyticsWorkspaceClient *operationalinsights.WorkspacesClient, terraformOptions *terraform.Options, ctx types.TestContext) {
-	resourceGroupName := terraform.Output(t, terraformOptions, "resource_group_name")
-	workspaceName := terraform.Output(t, terraformOptions, "workspace_name")
-	id := terraform.Output(t, terraformOptions, "id")
+	resourceGroupName := terraform.OutputContext(t, context.Background(), terraformOptions, "resource_group_name")
+	workspaceName := terraform.OutputContext(t, context.Background(), terraformOptions, "workspace_name")
+	id := terraform.OutputContext(t, context.Background(), terraformOptions, "id")
 
 	workspace, err := logAnalyticsWorkspaceClient.Get(context.Background(), resourceGroupName, workspaceName, nil)
 	if err != nil {
